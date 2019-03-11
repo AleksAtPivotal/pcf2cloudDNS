@@ -1,0 +1,10 @@
+---
+applications:
+- memory: 512M
+  name: router-osb
+  instances: 1
+  buildpack: go_buildpack
+  command: broker -c /home/vcap/app/configs/broker.json
+  env:
+    GOPACKAGENAME: github.com/alekssaul/pcf2cloudDNS
+    GO_INSTALL_PACKAGE_SPEC: github.com/alekssaul/pcf2cloudDNS/cmd/broker

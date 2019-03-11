@@ -1,0 +1,49 @@
+{
+    "host": "0.0.0.0",
+    "port": "8080",
+    "AppsDomain": "apps.run.haas-431.pez.pivotal.io",
+    "auth": {
+        "username": "admin",
+        "password": "password"
+    },
+    "CloudFoundry": {
+        "username": "admin",
+        "password": "TqpLJtmJs3Dk5"
+    },
+    "dns": {
+        "Domain": "pcf.systems",
+        "HostedZoneID": "Z69HEAFDASFDA8O1",
+        "TTL": 300
+    },
+    "service": {
+        "name": "globalrouter",
+        "id": "3f1e5e14-88b2-48fa-a7c9-75f2a6678f3f",
+        "description": "GlobalRouter allows managing of external DNS and LoadBalancers as a Service Instance.",
+        "bindable": true,
+        "plan_updateable": false,
+        "requires": null,
+        "dashboard_client": null
+    },
+    "service_metadata": {
+        "displayName": "GlobalRouter",
+        "documentationUrl": "http://github.com/alekssaul/servicebroker-dns-lb/",
+        "imageUrl": "data:image/png;base64,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",
+        "longDescription": "GlobalRouter allows managing of external DNS and LoadBalancers as a Service Instance.",
+        "providerDisplayName": "AleksSaul",
+        "supportUrl": "http://github.com/alekssaul/servicebroker-dns-lb/"
+    },
+    "plans": [
+        {
+            "name": "Standard",
+            "id": "41c0cd4c-6925-4b5b-978d-49fc25e1c9de",
+            "description": "This plan provides Router, DNS and Route update for your vanity domain",
+            "metadata": {
+                "bullets": [
+                    "Standard Plan, nothing fancy"
+                ],
+                "displayName": "Standard"
+            },
+            "free": true
+        }
+    ]
+}
