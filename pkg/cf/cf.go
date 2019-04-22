@@ -8,8 +8,7 @@ import (
 )
 
 // Bind - Bind will add a route to the App published on CF
-func Bind(routehost string, appGUID string, spaceGUID string, Username string, Password string) (err error) {
-	searchdomain := "pcf.systems"
+func Bind(routehost string, appGUID string, spaceGUID string, Username string, Password string, searchdomain string) (err error) {
 
 	log.Println("Running CF Bind workflow")
 	appEnv, _ := cfenv.Current()

@@ -33,7 +33,7 @@ type ServiceBroker struct {
 	InstanceCreators map[string]InstanceCreator
 	InstanceBinders  map[string]InstanceBinder
 	Config           config.BrokerConfig
-	Host			string
+	Host             string
 }
 
 // InstanceCredentials - This service provider does not provide Instance Credentials
@@ -68,7 +68,7 @@ func (serviceBroker *ServiceBroker) Bind(ctx context.Context, instanceID, bindin
 	var binding brokerapi.Binding
 	log.Println("Bind a new Service")
 
-	err := cf.Bind(serviceBroker.Host , details.BindResource.AppGuid ,details.BindResource.SpaceGuid, serviceBroker.Config.CloudFoundry.Username, serviceBroker.Config.CloudFoundry.Password )
+	err := cf.Bind(serviceBroker.Host, details.BindResource.AppGuid, details.BindResource.SpaceGuid, serviceBroker.Config.CloudFoundry.Username, serviceBroker.Config.CloudFoundry.Password, serviceBroker.Config.DNS.Domain)
 	if err != nil {
 		//return binding, err
 		log.Printf("Error: %s", err)
@@ -96,7 +96,7 @@ func (serviceBroker *ServiceBroker) Provision(ctx context.Context, instanceID st
 	err = dns.ChangeAWSRecord("CREATE",
 		params.Host+"."+serviceBroker.Config.DNS.Domain,
 		serviceBroker.Config.DNS.HostedZoneID,
-		"*." + serviceBroker.Config.AppsDomain,
+		"*."+serviceBroker.Config.AppsDomain,
 		serviceBroker.Config.DNS.TTL,
 		serviceBroker.Config.DNS.AWS.AccessKeyID,
 		serviceBroker.Config.DNS.AWS.SecretAccessKey)
@@ -117,17 +117,17 @@ func (serviceBroker *ServiceBroker) Deprovision(ctx context.Context, instanceID 
 		return spec, errors.New("plan_id required")
 	}
 	/*
-	err := dns.ChangeAWSRecord("DELETE",
-		// params.Host+"."+serviceBroker.Config.DNS.SharedDomain,
-		"foo."+serviceBroker.Config.DNS.Domain,
-		serviceBroker.Config.DNS.HostedZoneID,
-		"*." + serviceBroker.Config.AppsDomain,
-		serviceBroker.Config.DNS.TTL,
-		serviceBroker.Config.DNS.AWS.AccessKeyID,
-		serviceBroker.Config.DNS.AWS.SecretAccessKey)
-	if err != nil {
-		log.Printf("Error: %v", err)
-	}
+		err := dns.ChangeAWSRecord("DELETE",
+			// params.Host+"."+serviceBroker.Config.DNS.SharedDomain,
+			"foo."+serviceBroker.Config.DNS.Domain,
+			serviceBroker.Config.DNS.HostedZoneID,
+			"*." + serviceBroker.Config.AppsDomain,
+			serviceBroker.Config.DNS.TTL,
+			serviceBroker.Config.DNS.AWS.AccessKeyID,
+			serviceBroker.Config.DNS.AWS.SecretAccessKey)
+		if err != nil {
+			log.Printf("Error: %v", err)
+		}
 	*/
 	log.Printf("PlanID: %v\n", details.PlanID)
 	log.Printf("ServiceID: %v\n", details.ServiceID)

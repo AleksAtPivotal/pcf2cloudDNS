@@ -1,18 +1,18 @@
 {
     "host": "0.0.0.0",
     "port": "8080",
-    "AppsDomain": "apps.run.haas-431.pez.pivotal.io",
+    "AppsDomain": "apps.sonoma.cf-app.com", // CF Apps domain
     "auth": {
         "username": "admin",
         "password": "password"
     },
     "CloudFoundry": {
-        "username": "admin",
-        "password": "TqpLJtmJs3Dk5"
+        "username": "admin", // CF API admin username
+        "password": "XBEZR7xXF37MTsqtwBpvjU7Pi-quBSbW" // CF API admin password 
     },
     "dns": {
-        "Domain": "pcf.systems",
-        "HostedZoneID": "Z69HEAFDASFDA8O1",
+        "Domain": "pcf.systems", // route53 domain name
+        "HostedZoneID": "Z369O88AFHE8O1", // aws route53 hosted zone ID
         "TTL": 300
     },
     "service": {
